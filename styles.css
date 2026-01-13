@@ -1,0 +1,571 @@
+
+
+:root {
+  /* mmain colours backgrounds  */
+  --bg: #0b0c10;                         /* background base */
+  --text: rgba(255, 255, 255, 0.88);     /* main text */
+  --muted: rgba(255, 255, 255, 0.65);    /* text 2  */
+  --line: rgba(255, 255, 255, 0.14);     /* borders  */
+
+  /* surfaces */
+  --panel: rgba(255, 255, 255, 0.03);    /*  background 2  */
+  --panel-2: rgba(255, 255, 255, 0.06);  /* panel */
+
+  /* shadow */
+  --shadow: 0 24px 80px rgba(0,0,0,0.55);
+
+  /* change font to calibri light  */
+  :root {
+  --font: "Calibri Light", Calibri, "Segoe UI", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+
+  /* darker backdround - to make it more cinematic  */
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(255,255,255,0.06), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(255,255,255,0.04), transparent 55%),
+    var(--bg);
+}
+
+/* Links default */
+a { color: inherit; }
+
+/* buttons */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  padding: 1rem 1.25rem;
+  background: rgba(0,0,0,0.55);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+/* nav links */
+.nav-links {
+  list-style: none;   /* removes bullets */
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* The <a> inside nav */
+.nav-links a {
+  display: inline-block;
+  text-decoration: none; /* removes underline */
+
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: var(--panel);
+
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.nav-links a:hover {
+  transform: translateY(-1px);
+  background: var(--panel-2);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* page highlight  */
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
+  background: rgba(255,255,255,0.92);
+  color: #0b0c10;
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* footer */
+
+footer {
+  padding: 2rem 1.25rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* layout wrapper */
+
+.page {
+  padding: 3rem 1.25rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Mobile spacing */
+@media (max-width: 620px) {
+  .page {
+    padding: 2rem 1rem;
+  }
+}
+
+/* buttons */
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: rgba(255,255,255,0.92);
+  color: #0b0c10;
+  border-color: rgba(255,255,255,0.2);
+}
+
+.btn-primary:hover { filter: brightness(0.96); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  background: var(--panel-2);
+}
+
+/*  ABOUT PAGE */
+
+.about-center {
+  min-height: calc(100vh - 180px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+/* circle frame behind the photo */
+.avatar-wrap {
+  width: 160px;
+  height: 160px;
+  border-radius: 999px;
+  padding: 6px;
+
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+
+  /* dgrading on the photo  */
+  filter: contrast(1.06) saturate(0.9) brightness(0.85);
+}
+
+.about-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin: 0.25rem 0 0;
+  letter-spacing: 0.01em;
+}
+
+.about-subtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* text below the pic */
+.about-card {
+  margin-top: 0.75rem;
+  max-width: 70ch;
+  text-align: left;
+
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 1.25rem;
+
+  box-shadow: var(--shadow);
+}
+
+.about-card p {
+  margin: 0.75rem 0;
+  color: rgba(255,255,255,0.82);
+}
+
+.about-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 620px) {
+  .avatar-wrap {
+    width: 130px;
+    height: 130px;
+  }
+
+  .about-card {
+    text-align: left;
+  }
+}
+
+/* text page */
+
+.text-page {
+  padding: 3rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* text 1  */
+.prose {
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.prose h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.prose p { margin: 0.8rem 0; }
+
+.intro {
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+.bullets {
+  padding-left: 1.1rem;
+  margin-top: 0.75rem;
+}
+
+.bullets li { margin: 0.5rem 0; }
+
+.note, .footer-small {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.film-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.film-table th, .film-table td {
+  text-align: left;
+  padding: 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.film-table thead th {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Text page buttons */
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.controls button {
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: rgba(255,255,255,0.07);
+}
+
+.controls button:focus {
+  outline: 3px solid rgba(255,255,255,0.20);
+  outline-offset: 2px;
+}
+
+
+.prose.wide { max-width: 1100px; }
+
+/* gallery page here  */
+
+.gallery-hero {
+  text-align: center;
+  padding: 2.5rem 0 1.25rem;
+}
+
+.gallery-kicker {
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.gallery-title {
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02em;
+}
+
+.gallery-subtitle {
+  max-width: 70ch;
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+/* 12-column grid */
+.pinhole-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.4rem;
+}
+
+/* One card = 4 columns (3 per row on desktop) */
+.pinhole-card { grid-column: span 4; }
+
+.pinhole-link {
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.pinhole-link:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.pinhole-link img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+
+  /* film-grade mood */
+  filter: contrast(1.08) saturate(0.85) brightness(0.78);
+}
+
+/* Caption under image */
+.pinhole-meta {
+  padding: 0.75rem 0.25rem 0.25rem;
+}
+
+.pinhole-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.pinhole-count {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .pinhole-card { grid-column: span 6; } /* 2 per row */
+  .pinhole-link img { height: 230px; }
+}
+
+@media (max-width: 620px) {
+  .pinhole-card { grid-column: span 12; } /* 1 per row */
+}
+
+/* 
+  dark mode 
+*/
+
+body.dark {
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(255,255,255,0.04), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(255,255,255,0.03), transparent 55%),
+    #10100f;
+}
+
+/*  roehampton logo 
+
+/* 
+   ROEHAMPTON UNIVERSITY LOGO */
+
+.uni-logo {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  opacity: 0.45; /* subtle */
+}
+
+.uni-logo img {
+  width: 80px;          /* smaller */
+  max-width: 100%;
+  height: auto;
+  display: block;
+
+  filter: grayscale(100%)
+          contrast(1.05)
+          brightness(1.25);
+}
+
+
+/* darrens portaint */
+
+.text-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+
+.text-header h1 {
+  margin-top: 0;
+}
+
+.portrait {
+  width: 140px;
+  text-align: center;
+  padding-top: 0.25rem;
+}
+
+.portrait img {
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+
+  /* graining / darker  */
+  filter: grayscale(100%) contrast(1.05) brightness(0.85);
+}
+
+.portrait-caption {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.pull {
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  color: rgba(255,255,255,0.85);
+}
+
+.prose {
+  /* better reading  */
+  line-height: 1.7;
+}
+
+.prose h2 {
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 820px) {
+  .text-header {
+    grid-template-columns: 1fr;
+  }
+  .portrait {
+    width: auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .portrait-caption {
+    margin-top: 0;
+  }
+}
+/*  video / media section  */
+
+.media-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* yt video  */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 1.25rem 0 0.75rem;
+
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+.muted {
+  color: var(--muted);
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+}
